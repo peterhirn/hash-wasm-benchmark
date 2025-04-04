@@ -33,10 +33,10 @@ module.exports = {
     allowedHosts: "all",
   },
   module: {
-    noParse: /argon2\.wasm$/,
+    noParse: /argon2-browser\/dist\/argon2\.wasm$/,
     rules: [
       {
-        test: /argon2\.wasm$/,
+        test: /argon2-browser\/dist\/argon2\.wasm$/,
         // Tells WebPack that this module should be included as
         // base64-encoded binary file and not as code
         loader: "base64-loader",
@@ -44,6 +44,11 @@ module.exports = {
         // makes it think that it's not WebAssembly
         //
         // Error: WebAssembly module is included in initial chunk.
+        type: "javascript/auto",
+      },
+      {
+        test: /@phi-ag\/argon2\/dist\/argon2\.wasm$/,
+        loader: "file-loader",
         type: "javascript/auto",
       },
       {
